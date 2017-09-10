@@ -1,0 +1,49 @@
+:javascript
+	$(document).ready(function(){
+		$('[data-toggle="tooltip"]').tooltip();   
+	});
+
+.row
+	.col-md-8
+		%p.dark-grey.bold="#{@current_race.meeting.name} (#{@current_race.meeting.country}) - #{@current_race.london_time} (#{@current_race.horses.count} Runners)"
+		%p.small.lead.light-grey
+			="#{@current_race.name} | "
+			="Last Updated #{@current_race.last_updated}"
+	.col-md-4
+		=link_to refresh_odds_path(id: @current_race.id), class: 'btn btn-default btn-sm pull-right', remote: true do
+			=image_tag src="/png/glyphicons-82-refresh-red.png", class: 'white'
+.table-bordered-outside.top-border
+	%table.table.table-condensed.white-background.border
+		-@current_race.horses.each do |horse|
+			%tr
+				%td.middle
+					&nbsp
+					.badge.badge-sm.red-background
+						="#{horse.order}"
+					&nbsp
+					=image_tag src="https://content-cache.cdnbf.net/feeds_images/Horses/SilkColours/#{horse.image}"
+				%td
+					- if horse.stall_draw
+						.bold.dark-grey
+							="#{horse.name}"
+							%span.unbold.light-grey= "(#{horse.stall_draw})"
+					-else
+						.bold.dark-grey="#{horse.name}"
+					.small.light-grey="#{horse.jockey} - #{horse.trainer}"
+				%td.small.middle.light-grey
+					=horse.form if horse.form
+				%td.middle.light-grey
+					.dark-grey=horse.best_odds
+					.small
+						="(#{horse.best_odds_agency})"
+				%td.middle.light-grey
+					-if Tip.where(marketId: horse.marketId, selectionId: horse.selectionId, user_id: current_user).count > 0
+						=link_to "Tip", tips_path(id: horse.id, current_race: @current_race.id), remote: true, class: 'btn btn-small btn-default active', id: "horse-#{horse.id}", method: :post
+					-elsif !logged_in
+						%div{"data-toggle" => "tooltip", "title" => "Must Be Logged In"}
+							=link_to "Tip", tips_path(id: horse.id, current_race: @current_race.id), remote: true, class: 'btn btn-small btn-default disabled', id: "horse-#{horse.id}", method: :post	
+					-elsif horse.race.past_cutoff_time?
+						%div{"data-toggle" => "tooltip", "title" => "Tipping is closed for this race."}
+							=link_to "Tip", tips_path(id: horse.id, current_race: @current_race.id), remote: true, class: 'btn btn-small btn-default disabled', id: "horse-#{horse.id}", method: :post
+					-else
+						=link_to "Tip", tips_path(id: horse.id, current_race: @current_race.id), remote: true, class: 'btn btn-small btn-default', id: "horse-#{horse.id}", method: :post

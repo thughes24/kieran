@@ -1,0 +1,19 @@
+.row
+	.col-md-12
+		%ul.nav.nav-justified.bottom-border
+			-@meetings.each do |meeting|
+				-if meeting.id == @current_race.meeting.id
+					%li.nav-item.active
+						=link_to meeting.name, meeting_path(id: meeting.id), remote: true, class: 'tab active primary-red bold'
+				-else
+					%li.nav-item
+						=link_to meeting.name, meeting_path(id: meeting.id), remote: true, class: 'tab light-grey'
+		%ul.nav.nav-justified
+			-@current_race.meeting.races.each do |race|
+				-if @current_race.meeting.country !="AU"
+					%li.small.label.nav-item
+						=link_to "#{race.london_time}", tips_path(:meeting => race.meeting.name, :race => race.time), remote: true, class: 'nav-item active'
+				-else
+					%li.small.label.nav-item
+						=link_to "#{race.adelaide_time}", tips_path(:meeting => race.meeting.name, :race => race.time), remote: true, class: 'nav-item active'
+

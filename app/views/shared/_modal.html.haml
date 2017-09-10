@@ -1,0 +1,25 @@
+:javascript
+  $(document).ready(function() {
+    var clip = new ZeroClipboard($("#d_clip_button"))
+  }); 
+  $("#clear-test").on("click", function(){
+    $("#fe_text").val("Copy me!");
+    $("#testarea").val("");
+  });
+
+#myModal.modal.fade{:role => "dialog"}
+  .modal-dialog
+    / Modal content
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title My Tips (Excel C&P Format)
+      .modal-body#copy-input
+        -@tips.each do |tip|
+          %span.small
+            ="#{Time.now.strftime("%A")},#{tip.created_at.strftime('%d/%m/%Y')},#{tip.london_time},#{tip.meeting_name},#{tip.name}"
+            %br
+      .modal-footer
+        %button#d_clip_button.my_clip_button.btn.btn-default{"data-clipboard-target" => "copy-input", "data-clipboard-text" => "Default clipboard text from attribute", :title => "Copy"} Copy
+
+

@@ -1,0 +1,12 @@
+!!! 5
+%html(lang="en-US")
+  %head
+    %title Bet Locker
+    = stylesheet_link_tag    'application'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+  %body.main
+    = render '/layouts/navbar.html.haml'
+    = render '/layouts/secondary_navbar.html.haml', title: @title
+    .container
+      = yield

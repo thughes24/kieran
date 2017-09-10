@@ -1,0 +1,13 @@
+.white-background.border.top-border
+	.row
+		.col-md-offset-1.col-md-10
+			%h3 Sign Up Today
+			%br
+			=bootstrap_form_for @user do |f|
+				=f.text_field :username
+				=f.password_field :password
+				=f.email_field :email
+				=f.submit :submit, value: "Create Account", class: 'btn btn-default'
+				="  or"
+				=link_to "Sign Up Via Facebook", "#", class: 'btn btn-primary btn-sm'
+			%br

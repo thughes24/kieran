@@ -1,0 +1,28 @@
+%nav.navbar.navbar-default.primary-navbar.lite-background(style="border-radius:0px;")
+  .container
+    .navbar-header
+      %button.navbar-toggle.collapsed(type="button" data-toggle="collapse"   data-target="#main-nav-collapse" aria-expanded="false")
+        %span.sr-only Toggle Navigation
+        -3.times do
+          %span.icon-bar
+      =link_to "Bet Locker", root_path, class: 'navbar-brand white bold'
+      #main-nav-collapse.collapse.navbar-collapse
+    %ul.nav.navbar-nav.navbar-right
+      -if logged_in
+        %li
+          =link_to 'Enter Tips', tips_path, class: 'white btn'
+      -if current_user
+        %li
+          %a(href="#" id="dlabel" data-toggle="dropdown" class="nav-item white" data-target="#")
+            #{current_user.username.capitalize}
+            %b.caret
+          %ul.dropdown-menu(role="menu" aria-labelledby="dlabel")
+            %li
+              =link_to "My Account", user_path(current_user)
+              =link_to "Logout", session_path(current_user), method: :delete
+      -else
+        %li.navbar-form
+          =bootstrap_form_tag url: "/sessions", layout: :inline  do |f|
+            =f.text_field :username, skip_label: true, value: "Username/Email"
+            =f.password_field :password, skip_label: true, value: "Password"
+            =f.submit :submit, value: "Login"

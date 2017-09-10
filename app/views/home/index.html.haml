@@ -1,0 +1,35 @@
+.row
+	.col-md-12
+		.row
+			.col-md-7
+				%h2
+					Welcome to Bet Locker
+				%p.lead
+					Keeping Tipsters Honest and Punters Profitable.
+				=link_to "Tip Now", tips_path, class: "btn btn-success"
+				&nbsp
+				=link_to "Find a Tipster", tips_path, class: "btn btn-danger"
+				%br
+				%br
+				%br
+				.white-background.border.top-border
+					.row
+						.col-md-offset-1.col-md-10
+							%h3 Current Leaderboard
+							%table.table.table-condensed
+								%tr
+									%th Tipster
+									%th Country
+									%th Monthly Profit
+									%th Yearly Profit
+									%th Verdict
+								-5.times do
+									%tr
+										%td Kieran Ward
+										%td UK
+										%td.red +7.6
+										%td.red +43.2
+										%td Outstanding
+
+			.col-md-offset-1.col-md-4
+				=render '/shared/signup'

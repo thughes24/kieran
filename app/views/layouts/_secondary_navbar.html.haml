@@ -1,0 +1,10 @@
+%nav.navbar.navbar-default.secondary-navbar(style="border-radius:0px;")
+  .container
+    .navbar-header
+      %button.navbar-toggle.collapsed(type="button" data-toggle="collapse"   data-target="#main-nav-collapse" aria-expanded="false")
+        %span.sr-only Toggle Navigation
+        -3.times do
+          %span.icon-bar
+      =link_to @title, root_path, class: 'navbar-brand red bold text-center'
+      #main-nav-collapse.collapse.navbar-collapse
+        %ul.nav.navbar-nav.navbar-right

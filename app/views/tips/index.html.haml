@@ -1,0 +1,22 @@
+.row
+	.col-md-6
+		%h4.dark-grey.bold Todays Card
+		.white-background.top-border
+			#meetings.border
+				=render '/shared/meeting'
+		%br
+		%h4.dark-grey 
+			="My Tips | "
+			-if logged_in
+				%btn.btn.btn-primary{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"} Get Tips in CSV
+				=link_to "Send Tips", user_path(@current_user), class: "btn btn-primary"
+		-if @current_user
+			#my_tips
+				=render '/shared/tips', tips: @tips
+	.col-md-6
+		%span#ajaxrace
+			=render '/shared/race'
+
+
+
+

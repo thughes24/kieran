@@ -1,0 +1,72 @@
+@import "bootstrap";
+@import "rails_bootstrap_forms";
+
+.white{
+	color:white !important;
+}
+.btn-black {
+	background-color: #222222;
+}
+
+.middle {
+	vertical-align: middle !important;
+}
+.bold {
+	font-weight: bold;
+}
+.unbold {
+	font-weight: normal;
+}
+.main {
+	background-color:#EDEFF0;
+	color: #2B2B2B;
+}
+.white-background {
+	background-color:white;
+}
+.border {
+	border: 1px solid #ddd;
+}
+
+.dark-grey {
+	color: #3E474F !important;
+}
+
+.light-grey {
+	color: #457B9D !important;
+}
+
+.red {
+	color: #5FCF80 !important;
+}
+.red-background {
+	background-color: #5FCF80 !important;
+}
+.lite-background {
+	background-color: #3E474F;
+}
+.primary-red {
+	color: #C25975 !important;
+}
+.bottom-border {
+	border-bottom: 1px solid #C25975;
+}
+.top-border {
+	border-top: 3px solid #C25975 !important;
+	border-top-left-radius: 5px !important;
+	border-top-right-radius: 5px !important;
+}
+
+.primary-navbar {
+	margin-bottom:0;
+	border:0;
+}
+.secondary-navbar {
+	background-color: #ffffff;
+	color: #5FCF80;
+	border:0;
+}
+
+.navbar-default .navbar-nav > .open > a {
+	background-color: inherit !important;
+}

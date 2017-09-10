@@ -1,0 +1,101 @@
+.row
+	.col-md-5
+		.row
+			.col-md-offset-1.col-md-10
+				%br
+				.row
+					.col-md-2
+						=image_tag src="/png/glyphicons-35-old-man.png", class: 'white', height: "50px", width: "50px"
+						%br
+						%p.lead $49/m
+					.col-md-3
+						%h5=@user.username
+						%btn.btn.btn-success Subscribe
+				.row
+					.col-md-6.top-border.white-background
+						%h4.lead By The Numbers
+						%h5
+							="Days Tipped: "
+							%span.unbold 14
+						%h5
+							="Average # of Tips/Day: "
+							%span.unbold 3.5
+						%h5
+							="Average Odds: "
+							%span.unbold 9
+						%h5
+							="Strike Rate: "
+							%span.unbold 24%
+						%h5
+							="Last 30 Days: "
+							%span.red +7.6
+						%h5
+							="Profit to Date: "
+							%span.red +51.2
+	.col-md-6
+		.row
+			.col-md-offset-1.col-md-10
+				.row
+					%h5 Today's Sent Tips
+					.top-border
+						%table.table.table-condensed.white-background.border
+							%tr
+								%th Meeting
+								%th Time
+								%th #
+								%th Name
+								%th Av. Odds
+								%th Av. Odds + 15 Mins
+								%th Av. Odds + 30 Mins
+							-@user.todays_sent_tips.each do |tip|
+								%tr
+									%td.middle
+										=tip.meeting_name
+									%td.middle
+										="#{tip.adelaide_time} #{tip.time_to}"
+									%td.middle
+										.badge.badge-sm.red-background
+											="#{tip.order}"
+									%td.middle
+										=image_tag src="https://content-cache.cdnbf.net/feeds_images/Horses/SilkColours/#{tip.image}"
+										%span.dark-grey.bold=tip.name
+									%td.middle
+										=tip.average_odds.to_f.round(2)
+									%td.middle
+										=tip.average_odds_15
+									%td.middle
+										=tip.average_odds_30
+					%br
+					%h5
+						="Today's Unsent Tips |" 
+						=link_to "Send", send_tips_path(id: current_user.id), class: "btn btn-primary btn-sm"
+					.top-border
+						%table.table.table-condensed.white-background.border
+							%tr
+								%th Meeting
+								%th Time
+								%th #
+								%th Name
+								%th Av. Odds
+								%th Av. Odds + 15 Mins
+								%th Av. Odds + 30 Mins
+							-@user.todays_unsent_tips.each do |tip|
+								%tr
+									%td.middle
+										=tip.meeting_name
+									%td.middle
+										="#{tip.adelaide_time} #{tip.time_to}"
+									%td.middle
+										.badge.badge-sm.red-background
+											="#{tip.order}"
+									%td.middle
+										=image_tag src="https://content-cache.cdnbf.net/feeds_images/Horses/SilkColours/#{tip.image}"
+										%span.dark-grey.bold=tip.name
+									%td.middle
+										=tip.average_odds.to_f.round(2)
+									%td.middle
+										=tip.average_odds_15
+									%td.middle
+										=tip.average_odds_30
+
+
