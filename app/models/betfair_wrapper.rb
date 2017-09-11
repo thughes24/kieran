@@ -10,7 +10,7 @@ class BetfairWrapper
 	end
 
 	def todays_events
-		Time.zone = "Adelaide"
+		Time.zone = "UTC"
 		@todays_events ||= @client.list_market_catalogue({
 			filter: {
 				eventTypeIds: [7],
