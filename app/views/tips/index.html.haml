@@ -9,7 +9,6 @@
 			="My Tips | "
 			-if logged_in
 				%btn.btn.btn-primary{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"} Get Tips in CSV
-				=link_to "Send Tips", user_path(@current_user), class: "btn btn-primary"
 		-if @current_user
 			#my_tips
 				=render '/shared/tips', tips: @tips

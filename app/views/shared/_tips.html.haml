@@ -13,9 +13,8 @@
 					%td.middle
 						=image_tag src="https://content-cache.cdnbf.net/feeds_images/Horses/SilkColours/#{tip.image}"
 						%span.dark-grey.bold=tip.name
-					-if !tip.past_cutoff_time? && !tip.sent?
-						%td.middle
-							=link_to "X", tip_path(tip, current_race: @current_race.id), method: :delete, remote: true
+					%td.middle
+						=link_to "X", tip_path(tip, current_race: @current_race.id), method: :delete, remote: true
 			=render '/shared/modal'
 
 :javascript

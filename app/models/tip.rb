@@ -18,6 +18,10 @@ class Tip < ActiveRecord::Base
 		(Time.parse(race_time)+(60*60)).to_s.split(" ")[1].split(":")[0..1].join(":")
 	end
 
+	def self.todays
+		where("DATE(race_time) = ?", Date.parse(Time.new.gmtime.to_s))
+	end
+
   	def time_to
   		dif = Time.parse("#{race_time} UTC")-Time.now.gmtime
   		if dif/60 < -60
